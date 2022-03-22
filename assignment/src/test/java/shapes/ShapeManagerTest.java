@@ -45,9 +45,10 @@ public class ShapeManagerTest {
     @Test
     public void testAddShapes() {
 
-//        toy.addShapes( circles );
-        //TODO test addShapes
-        fail("test method testAddShapes not yetimplemented");
+        toy.addShapes( circles );
+        assertThat(this.toy.contains(this.circle))
+                .isTrue();
+        //fail("test method testAddShapes not yetimplemented");
     }
 
     //@Disabled("Think TDD")
@@ -59,8 +60,22 @@ public class ShapeManagerTest {
 
         toy.addShapes( circles );
         toy.addShapes( disks );
-        //TODO test collectShapesOfType
-        fail("test method testCollectDisk not yet implemented");
+
+        List<Shape> input = new ArrayList<>();
+        this.toy.collectShapesOfType(input, Disk.class);
+        boolean contains = false;
+        for (Shape value : input) {
+            if(value instanceof Sphere){
+                contains = true;
+            }
+            if(value instanceof Disk){
+                contains = true;
+            }
+            assertThat(contains).isTrue();
+        }
+
+        //assertThat(contains).isTrue();
+        //fail("test method testCollectDisk not yet implemented");
     }
 
 }

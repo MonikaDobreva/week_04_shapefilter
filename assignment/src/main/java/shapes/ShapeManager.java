@@ -20,8 +20,10 @@ public class ShapeManager {
      *
      * @param shapesToAdd
      */
-    //TODO implement addShapes
-    void addShapes( List shapesToAdd ) {}
+
+    void addShapes( List<? extends Shape> shapesToAdd ) {
+        this.shapes.addAll(shapesToAdd);
+    }
     /**
      * Filter objects of type from shapes. Collect the specified shape  in this into a
      * collection. The specification (Generic Type and all) should accept
@@ -30,8 +32,14 @@ public class ShapeManager {
      *
      * @param collection that accepts the shape of type t
      */
-    //TODO implement collectShapesOfType
-    void collectShapesOfType( Collection receiver, Class acceptedType ) {}
+
+    void collectShapesOfType( Collection<? super Shape> receiver, Class<? extends Shape> acceptedType ) {
+        for (Shape s : this.shapes) {
+            if (acceptedType.isInstance(s)) {
+                receiver.add(s);
+            }
+        }
+    }
 
     /**
      * Does this toy contain a shape. Helper method for tests.
